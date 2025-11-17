@@ -6,17 +6,28 @@
 class Lettura
 {
     public:
-        Lettura(double yv, double ya, double pv, double pa, double rv, double ra);
-        Lettura(std::initializer_list<double> lst);
+        //costruttori
+        explicit Lettura(double yv=0, double ya=0, double pv=0, double pa=0, double rv=0, double ra=0);
+        Lettura(std::initializer_list<double> lst = {});
+        Lettura(const Lettura& l); //copia
+        Lettura(Lettura&& l); //move
+
+        //funzioni getter
+        double getYawVel() const;
+        double getPitchVel() const;
+        double getRollVel() const;
+        double getYawAcc() const;
+        double getPitchAcc() const;
+        double getRollAcc() const;
 
     private:
-
-    double yaw_v;
-    double yaw_a;
-    double pitch_v;
-    double pitch_a;
-    double roll_v;
-    double roll_a;
+        //dati della lettura
+        double yaw_v;
+        double yaw_a;
+        double pitch_v;
+        double pitch_a;
+        double roll_v;
+        double roll_a;
 
 };
 
