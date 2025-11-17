@@ -31,4 +31,7 @@ class Lettura
 
 };
 
+//override operatore di inserimento
+std::ostream& operator<<(std::ostream& COUT,const Lettura& l);
+
 #endif

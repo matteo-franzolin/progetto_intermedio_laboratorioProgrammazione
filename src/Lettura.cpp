@@ -1,6 +1,5 @@
 #include <iostream>
 #include "../include/Lettura.h"
-#include "Lettura.h"
 
 //costruttore di defualt e con valori double
 Lettura::Lettura(double yv, double ya, double pv, double pa, double rv, double ra)
@@ -57,3 +56,12 @@ double Lettura::getYawAcc() const { return yaw_a; }
 double Lettura::getPitchAcc() const { return pitch_a; }
 double Lettura::getRollAcc() const { return roll_a; }
 
+//override operatore di inserimento
+std::ostream &operator<<(std::ostream & COUT, const Lettura &l)
+{
+    COUT << "YAW  velocity: " << l.getYawVel() << " acceleration: " << l.getYawAcc() << "\n"
+         << "PITCH  velocity: " << l.getPitchVel() << " acceleration: " << l.getPitchAcc() << "\n"
+         << "ROLL  velocity: " << l.getRollVel() << " acceleration: " << l.getRollAcc() << "\n";
+    
+    return COUT;
+}
