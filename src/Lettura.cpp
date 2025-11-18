@@ -2,9 +2,10 @@
 
 Lettura::Lettura(){
 
-    this->pitch_a = 0;
-    this->pitch_v
+    this->yaw_a = 0;
+    this->yaw_v
     this->pitch_v;
     this->pitch_a;
-    double this->ble roll_a;
+    this->
+
 }
