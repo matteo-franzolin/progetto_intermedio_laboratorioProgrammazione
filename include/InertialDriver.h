@@ -8,7 +8,8 @@ class InertialDriver{
     
     public:
     
-    explicit InertialDriver();  //default
+    InertialDriver();  //default
+    InertialDriver(std::initializer_list<MyVector> lst);
     InertialDriver();
     InertialDriver();  //move
     InertialDriver();  //copy
@@ -25,17 +26,23 @@ class InertialDriver{
 
     private:
     
+    /* DA COPIARE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     double yaw_v;
     double yaw_a;
     double pitch_v;
     double pitch_a;
     double roll_v;
     double roll_a;
-    
-    const int BUFFER_DIM = 17;
+
+    double[] lettura {yaw_v, yaw_a, pitch_v, pitch_a, roll_v, roll_a};
+    */
+
+    const int BUFFER_DIM = 1;  //Numero provvisorio di misure (17 letture a misura). INERTIAL DRIVER INIZIALIZZA CON PIU' MISURE!!
+
+
 
     MyVector buffer(BUFFER_DIM);
 
-}
+};
 
 #endif  //INERTIALDRIVER_H
