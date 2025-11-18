@@ -8,7 +8,7 @@ class Lettura
     public:
         //costruttori
         explicit Lettura(double yv=0, double ya=0, double pv=0, double pa=0, double rv=0, double ra=0);
-        Lettura(std::initializer_list<double> lst = {});
+        Lettura(std::initializer_list<double> lst);
         Lettura(const Lettura& l); //copia
         Lettura(Lettura&& l); //move
 
@@ -19,6 +19,10 @@ class Lettura
         double getYawAcc() const;
         double getPitchAcc() const;
         double getRollAcc() const;
+
+        //operatore di copia e move
+        Lettura& operator=(const Lettura& l);
+        Lettura& operator=(Lettura&& l);
 
     private:
         //dati della lettura
@@ -33,5 +37,7 @@ class Lettura
 
 //override operatore di inserimento
 std::ostream& operator<<(std::ostream& COUT,const Lettura& l);
+std::ostream& operator<<(std::ostream& COUT,const Lettura l[17]);
+
 
 #endif
