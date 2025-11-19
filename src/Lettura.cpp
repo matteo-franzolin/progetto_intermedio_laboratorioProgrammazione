@@ -2,6 +2,9 @@
 #include "../include/Lettura.h"
 
 //costruttore di defualt e con valori double
+Lettura::Lettura()
+    :yaw_v{0},yaw_a{0},pitch_v{0},pitch_a{0},roll_v{0},roll_a{0}
+{}
 Lettura::Lettura(double yv, double ya, double pv, double pa, double rv, double ra)
     :yaw_v{yv},yaw_a{ya},pitch_v{pv},pitch_a{pa},roll_v{rv},roll_a{ra}
 {}
@@ -20,32 +23,7 @@ Lettura::Lettura(std::initializer_list<double> lst)
     this->roll_v = t[4];
     this->roll_a = t[5];
 }
-//costruttore di copia e move
-Lettura::Lettura(const Lettura &l)
-{
-    this->yaw_v = l.yaw_v;
-    this->yaw_a = l.yaw_a;
-    this->pitch_v = l.pitch_v;
-    this->pitch_a = l.pitch_a;
-    this->roll_v = l.roll_v;
-    this->roll_a = l.roll_a;
-}
-Lettura::Lettura(Lettura &&l)
-{
-    this->yaw_v = l.yaw_v;
-    this->yaw_a = l.yaw_a;
-    this->pitch_v = l.pitch_v;
-    this->pitch_a = l.pitch_a;
-    this->roll_v = l.roll_v;
-    this->roll_a = l.roll_a;
 
-    l.yaw_v = 0;
-    l.yaw_a = 0;
-    l.pitch_v = 0;
-    l.pitch_a = 0;
-    l.roll_v = 0;
-    l.roll_a = 0;
-}
 //getter dei valori
 double Lettura::getYawVel() const { return yaw_v; }
 double Lettura::getPitchVel() const { return pitch_v; }
@@ -54,36 +32,6 @@ double Lettura::getYawAcc() const { return yaw_a; }
 double Lettura::getPitchAcc() const { return pitch_a; }
 double Lettura::getRollAcc() const { return roll_a; }
 
-//operatori copia e move
-Lettura& Lettura::operator=(const Lettura& l)
-{
-    this->yaw_v = l.yaw_v;
-    this->yaw_a = l.yaw_a;
-    this->pitch_v = l.pitch_v;
-    this->pitch_a = l.pitch_a;
-    this->roll_v = l.roll_v;
-    this->roll_a = l.roll_a;
-
-    return *this;
-}
-Lettura& Lettura::operator=(Lettura&& l)
-{
-    this->yaw_v = l.yaw_v;
-    this->yaw_a = l.yaw_a;
-    this->pitch_v = l.pitch_v;
-    this->pitch_a = l.pitch_a;
-    this->roll_v = l.roll_v;
-    this->roll_a = l.roll_a;
-
-    l.yaw_v = 0;
-    l.yaw_a = 0;
-    l.pitch_v = 0;
-    l.pitch_a = 0;
-    l.roll_v = 0;
-    l.roll_a = 0;
-
-    return *this;
-}
 
 //overload operatore di inserimento
 std::ostream &operator<<(std::ostream& COUT, const Lettura& l)

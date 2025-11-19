@@ -3,64 +3,31 @@
 
 //costruttori defualt e con parametri
 Misura::Misura()
-    :sensors{new Lettura[SENSORS_NUMBER]}
-{
-
-}
+    :sensors{}
+{}
 Misura::Misura(Lettura arr[SENSORS_NUMBER])
-    :sensors{new Lettura[SENSORS_NUMBER]}
+    :sensors{}
 {
     std::copy(arr, arr+SENSORS_NUMBER, this->sensors);
 }
 Misura::Misura(std::initializer_list<Lettura> lst)
-    :sensors{new Lettura[SENSORS_NUMBER]}
+    :sensors{}
 {
-    std::copy(lst.begin(), lst.end(), sensors);
+    if(lst.size() != SENSORS_NUMBER) { throw std::invalid_argument("Inserire tutte le 17 letture"); }
+    std::copy(lst.begin(), lst.end(), this->sensors);
 }
 
-//costruttori copia e move
-Misura::Misura(const Misura& m)
-    :sensors{new Lettura[SENSORS_NUMBER]}
-{
-    std::copy(m.sensors, m.sensors+SENSORS_NUMBER, this->sensors);
-}
-Misura::Misura(Misura&& m)
-    :sensors{new Lettura[SENSORS_NUMBER]}
-{
-    this->sensors = m.sensors;
-    m.sensors = nullptr;
-}
-
-//distruttore
-Misura::~Misura()
-{
-    delete[] sensors;
-}
-
-//operatori copia e move
-Misura& Misura::operator=(const Misura& m)
-{
-    std::copy(m.sensors, m.sensors + SENSORS_NUMBER, this->sensors);
-    return *this;
-}
-Misura& Misura::operator=(Misura&& m)
-{
-    delete[] this->sensors;
-    this->sensors = m.sensors;
-    m.sensors = nullptr;
-    return *this;
-}
-
+//lettura dati
 Lettura Misura::readSensor(int index) const
 {
-    if(index < 0 || index >= 17)
-    { throw std::invalid_argument("Indice non valido: inserire il sensore corretto (0-16)"); }
+    if(index < 0 || index >= SENSORS_NUMBER)
+    { throw std::invalid_argument("Indice non valido: inserire un numero di sensore corretto (0-16)"); }
     return this->sensors[index];
 }
-
+//overload di <<
 std::ostream& operator<<(std::ostream& COUT, const Misura& m)
 {
-    for(int i = 0; i < 17; i++)
+    for(int i = 0; i < SENSORS_NUMBER; i++)
     {
         COUT << "Sensore " << i << "\n" << m.readSensor(i);
     }
