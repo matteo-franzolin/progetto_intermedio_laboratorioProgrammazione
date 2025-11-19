@@ -7,11 +7,11 @@ class Lettura
 {
     public:
         //costruttori
-        Lettura();
-        explicit Lettura(double yv, double ya, double pv, double pa, double rv, double ra);
-        Lettura(std::initializer_list<double> lst);
+        Lettura(); //default
+        explicit Lettura(double yv, double ya, double pv, double pa, double rv, double ra); //con singoli valori double
+        Lettura(std::initializer_list<double> lst); //con initializer list di double (devono essere tutti e 6)
 
-        //copia e move
+        //copia e move (costruttori e operatori standard)
         Lettura(const Lettura& l) = default;
         Lettura(Lettura&& l) = default;
         Lettura& operator=(const Lettura& l) = default;
