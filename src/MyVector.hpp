@@ -33,6 +33,7 @@ template<typename T>
 MyVector<T>::MyVector(MyVector<T>&& v)
 	:size{v.size},buffer_size{v.buffer_size},arr{new T[buffer_size]}
 {
+	arr = v.arr;
 	v.size = 0;
 	v.arr = nullptr;
 }
@@ -108,9 +109,6 @@ void MyVector<T>::push_back(const T& element)
 {
 	if(size >= buffer_size)
 	{
-		//test per reserve
-		//std::cout << "cambio buffer" << "\n";
-		
 		buffer_size += INITIAL_SIZE;
 		T* temp = new T[buffer_size];
 		for(int i = 0; i < size; i++)

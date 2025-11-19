@@ -85,20 +85,12 @@ Lettura& Lettura::operator=(Lettura&& l)
     return *this;
 }
 
-//override operatore di inserimento
+//overload operatore di inserimento
 std::ostream &operator<<(std::ostream& COUT, const Lettura& l)
 {
     COUT << "YAW  velocity: " << l.getYawVel() << " acceleration: " << l.getYawAcc() << "\n"
          << "PITCH  velocity: " << l.getPitchVel() << " acceleration: " << l.getPitchAcc() << "\n"
          << "ROLL  velocity: " << l.getRollVel() << " acceleration: " << l.getRollAcc() << "\n";
     
-    return COUT;
-}
-std::ostream &operator<<(std::ostream& COUT, const Lettura l[17])
-{
-    for(int i = 0; i < 17; i++)
-    {
-        COUT << "Sensore " << i+1 << "\n" << l[i];
-    }
     return COUT;
 }
