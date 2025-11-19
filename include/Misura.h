@@ -14,6 +14,12 @@ class Misura
         Misura(Lettura arr[SENSORS_NUMBER]);
         Misura(std::initializer_list<Lettura> lst);
 
+        //copia e move
+        Misura(const Misura& m) = default;
+        Misura(Misura&& m) = default;
+        Misura& operator=(const Misura& m) = default;
+        Misura& operator=(Misura&& m) = default;
+
         //getter
         Lettura readSensor(int index) const;
     

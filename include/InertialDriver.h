@@ -12,14 +12,14 @@ class InertialDriver
     public:
         //costruttori
         InertialDriver(); //default
-        //InertialDriver(std::initializer_list<Lettura[17]> lst); se riuscite implementatelo (non credo serva a niente)
+        InertialDriver(std::initializer_list<Misura> lst);
         //InertialDriver();  //move
         //InertialDriver();  //copy
 
         InertialDriver operator=(InertialDriver&& a);  //assegnamento move
         InertialDriver& operator=(const InertialDriver& a);  //assegnamento copy
         
-        void push_back(Lettura (&l)[17]);
+        void push_back(Misura& m);
         Lettura* pop_front();
         void clear_buffer();
         Lettura* get_reading(int index);
@@ -29,7 +29,7 @@ class InertialDriver
 
     private:
         int index;
-        MyVector<Lettura*> buffer;
+        MyVector<Misura> buffer;
 
 };
 

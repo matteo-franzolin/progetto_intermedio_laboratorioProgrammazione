@@ -11,6 +11,12 @@ class Lettura
         explicit Lettura(double yv, double ya, double pv, double pa, double rv, double ra);
         Lettura(std::initializer_list<double> lst);
 
+        //copia e move
+        Lettura(const Lettura& l) = default;
+        Lettura(Lettura&& l) = default;
+        Lettura& operator=(const Lettura& l) = default;
+        Lettura& operator=(Lettura&& l) = default;
+
         //funzioni getter
         double getYawVel() const;
         double getPitchVel() const;
