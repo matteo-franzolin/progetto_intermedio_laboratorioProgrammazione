@@ -3,17 +3,16 @@
 
 #include <iostream>
 #include "MyVector.h"
+#include "Misura.h"
 #include "Lettura.h"
 
 constexpr int BUFFER_DIM = 10;  //numero di misure nel buffer circolare
-constexpr int SENSORS_NUMBER = 17; //numero di sensori per ogni misura
 
 class InertialDriver
 {    
     public:
         //costruttori
         InertialDriver(); //default
-        //InertialDriver(std::initializer_list<Lettura[SENSORS_NUMBER]> lst); //dubito funzioni
         
         //copia e move (costruttori e operatori standard)
         InertialDriver(const InertialDriver& i) = default;
@@ -33,7 +32,7 @@ class InertialDriver
     private:
         int index; //indice per inserimento nel buffer circolare (punta sempre alla posizione DA RIEMPIRE)
         int buffer_size; //dimensione attualmente utilizzata del buffer
-        MyVector<Lettura*> buffer; //buffer circolare
+        MyVector<Misura> buffer; //buffer circolare
 
 };
 

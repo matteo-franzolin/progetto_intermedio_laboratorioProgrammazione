@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../include/Lettura.h"
+#include "../include/Misura.h"
 #include "../include/InertialDriver.h"
 
 int main(void)
@@ -26,9 +27,12 @@ int main(void)
 
     InertialDriver d1;
     d1.push_back(m1);
+    std::cout << d1.get_reading(3);
 
-    Lettura* res = d1.pop_front();
-    std::cout << res[3];
+    Misura mis1 = m1;
+    Misura mis2 = mis1;
+    mis2 = mis2;
+    std::cout << mis2;
 
     return 0;
 }

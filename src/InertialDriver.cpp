@@ -1,23 +1,21 @@
 #include <iostream>
 #include "../include/InertialDriver.h"
+#include "../include/Misura.h"
 #include "../include/Lettura.h"
 
 //costruttore di default
 InertialDriver::InertialDriver()
-    :buffer{MyVector<Lettura*>(BUFFER_DIM)}, index{0}, buffer_size{0}
+    :buffer{MyVector<Misura>(BUFFER_DIM)}, index{0}, buffer_size{0}
 {
-    //inizializzazione degli array nel buffer
-    for(int i = 0; i < BUFFER_DIM; i++)
-    {
-        this->buffer[i] = new Lettura[SENSORS_NUMBER];
-    }
+    
 }
 
 //funzioni membro
 void InertialDriver::push_back(Lettura (&l)[SENSORS_NUMBER])
 {   
-    //i valori dell'array l vengono copiati nel buffer
-    std::copy(l, l + SENSORS_NUMBER, buffer[this->index]); 
+    //viene inserita nel buffer una misura con i dati dell'array l
+    Misura m = l;
+    this->buffer[this->index] = m;
     //incremento dell'indice nel buffer
     this->index = increment(this->index);
     //eventuale incremento del buffer_size se non è già pieno
@@ -34,9 +32,9 @@ Lettura* InertialDriver::pop_front()
         i = increment(i);
     }
     //si salva l'array trovato
-    Lettura* front = this->buffer[i];
-    //si riassegna il puntatore nel buffer a un array vuoto
-    this->buffer[i] = new Lettura[SENSORS_NUMBER];
+    Lettura* front = this->buffer[i].get_sensors();
+    //si pulisce la misura nel buffer
+    this->buffer[i] = Misura();
     //diminuzione del buffer_size
     this->buffer_size--;
     //si ritorna l'oggetto salvato prima
@@ -46,10 +44,8 @@ void InertialDriver::clear_buffer()
 {
     for(int i = 0; i < BUFFER_DIM; i++)
     {
-        //eliminazione del puntatore
-        delete[] this->buffer[this->index];
-        //inizializzazione di un nuovo array vuoto
-        this->buffer[this->index] = new Lettura[SENSORS_NUMBER];
+        //inizializzazione di una nuova misura vuota
+        this->buffer[this->index] = Misura();
         //passaggio al puntatore successivo
         this->index = increment(this->index); 
     }
@@ -58,11 +54,12 @@ void InertialDriver::clear_buffer()
 }
 Lettura InertialDriver::get_reading(int sensor)
 {
+    if(buffer_size == 0) { throw std::out_of_range("Il buffer è vuoto, impossibile reperire una lettura"); }
     //controllo della correttezza dell'indice
     if(sensor < 0 || sensor > SENSORS_NUMBER - 1) { throw std::invalid_argument("Inserire un numero di sensore valido"); }
-    //si trova l'elemento più recente e si ritorna
+    //si trova l'elemento più recente e si ritorna il sensore richiesto
     int i = decrement(this->index);
-    return this->buffer[i][sensor];
+    return this->buffer[i].get_sensors()[sensor];
 }
 
 int increment(int i)
