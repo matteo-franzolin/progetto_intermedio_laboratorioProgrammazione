@@ -12,7 +12,7 @@ Lettura::Lettura(double yv, double ya, double pv, double pa, double rv, double r
 Lettura::Lettura(std::initializer_list<double> lst)
 {
     if(lst.size() != 6) 
-    { throw std::invalid_argument("non ci sono abbastanza valori per una lettura: inserire yaw_velocity, yaw_acceleration, pitch_velocity, pitch_acceleration, roll_velocity, roll_acceleration"); }
+    { throw std::invalid_argument("Il numero di valori non è coerente con una lettura: inserire yaw_velocity, yaw_acceleration, pitch_velocity, pitch_acceleration, roll_velocity, roll_acceleration"); }
 
     double t[6];
     std::copy(lst.begin(),lst.end(),t);

@@ -24,7 +24,7 @@ class InertialDriver
         void push_back(Lettura (&l)[SENSORS_NUMBER]);
         Lettura* pop_front();
         void clear_buffer();
-        Lettura get_reading(int sensor);
+        Lettura get_reading(int sensor) const;
         
         //distruttore (standard)
         ~InertialDriver() = default; 
@@ -39,5 +39,8 @@ class InertialDriver
 //??? sono da lasciare esterne o private ???
 int increment(int i);
 int decrement(int i);
+
+//overload <<
+std::ostream& operator<<(std::ostream& COUT, const InertialDriver& i);
 
 #endif  //INERTIALDRIVER_H

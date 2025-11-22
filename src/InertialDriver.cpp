@@ -52,7 +52,7 @@ void InertialDriver::clear_buffer()
     //azzeramento del buffer_size
     this->buffer_size = 0;
 }
-Lettura InertialDriver::get_reading(int sensor)
+Lettura InertialDriver::get_reading(int sensor) const
 {
     if(buffer_size == 0) { throw std::out_of_range("Il buffer è vuoto, impossibile reperire una lettura"); }
     //controllo della correttezza dell'indice
@@ -60,6 +60,16 @@ Lettura InertialDriver::get_reading(int sensor)
     //si trova l'elemento più recente e si ritorna il sensore richiesto
     int i = decrement(this->index);
     return this->buffer[i].get_sensors()[sensor];
+}
+
+//overload <<
+std::ostream& operator<<(std::ostream& COUT, const InertialDriver& d)
+{
+    for(int i = 0; i < SENSORS_NUMBER; i++)
+    {
+        COUT << "Sensore " << i << "\n" << d.get_reading(i);
+    }
+    return COUT;
 }
 
 int increment(int i)
