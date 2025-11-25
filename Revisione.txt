@@ -1,0 +1,10 @@
+#include sbagliati: "InertialDriver" invece di "../includen/InertialDriver" percio' non compila.
+
+Funzione pop_front() con tipo di ritorno sbagliato (ritorna bool) e non dovrebbe accettare parametri.
+
+"reallocate(size_t new_capacity)" e "validate_sensor_reading(const SensorReading& reading, size_t sensor_id)" sono chiamate helper function nonostante sia interna alla classe MyVector (e privata).
+
+"nextIndex(size_t current) const" e' chiamata helper, ma e' interna e private.
+
+L'overload di << e' friend nonostante fosse stato sconsigliato il suo utilizzo.
+
