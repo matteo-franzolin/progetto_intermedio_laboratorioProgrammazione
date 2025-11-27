@@ -1,4 +1,4 @@
-#include sbagliati: "InertialDriver" invece di "../includen/InertialDriver" percio' non compila.
+#include sbagliati: "InertialDriver" invece di "../include/InertialDriver" percio' non compila.
 
 Funzione pop_front() con tipo di ritorno sbagliato (ritorna bool) e non dovrebbe accettare parametri.
 
@@ -8,3 +8,4 @@ Funzione pop_front() con tipo di ritorno sbagliato (ritorna bool) e non dovrebbe
 
 L'overload di << e' friend nonostante fosse stato sconsigliato il suo utilizzo.
 
+Ciclo while nel main per l'estrazione non permette di arrivare alla fine del test. Estrae una volta in più del dovuto.
