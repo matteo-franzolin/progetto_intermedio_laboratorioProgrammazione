@@ -1,11 +1,17 @@
-#include sbagliati: "InertialDriver" invece di "../include/InertialDriver" percio' non compila.
+Problemi riscontrati:
+    #include sbagliati: "InertialDriver" invece di "../include/InertialDriver" percio' non compila.
 
-Funzione pop_front() con tipo di ritorno sbagliato (ritorna bool) e non dovrebbe accettare parametri.
+    Funzione pop_front() con tipo di ritorno sbagliato (ritorna bool) e non dovrebbe accettare parametri.
 
-"reallocate(size_t new_capacity)" e "validate_sensor_reading(const SensorReading& reading, size_t sensor_id)" sono chiamate helper function nonostante sia interna alla classe MyVector (e privata).
+    L'overload di << e' friend nonostante fosse stato sconsigliato il suo utilizzo.
 
-"nextIndex(size_t current) const" e' chiamata helper, ma e' interna e private.
+    Ciclo while nel main per l'estrazione non permette di arrivare alla fine del test. Estrae una volta in più del dovuto.
 
-L'overload di << e' friend nonostante fosse stato sconsigliato il suo utilizzo.
+ALtre precisazioni:
+    "reallocate(size_t new_capacity)", "validate_sensor_reading(const SensorReading& reading, size_t sensor_id)"  e "nextIndex(size_t current) const" sono chiamate helper function nonostante sia interna alla classe MyVector (e private).
 
-Ciclo while nel main per l'estrazione non permette di arrivare alla fine del test. Estrae una volta in più del dovuto.
+Stile:
+    Non molto chiara la scelta di avere MyVector come classe interna al file InertialDriver.
+
+In generale, la classe InertialDriver, insieme anche a SensorReading, gestisce bene valori inaspettati o errati.
+Non sono stati individuati memory leak nel codice.
